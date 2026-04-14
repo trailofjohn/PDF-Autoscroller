@@ -1,4 +1,4 @@
-import {App, PluginSettingTab, Setting, SliderComponent, TextComponent} from "obsidian";
+import {App, PluginSettingTab, Setting, TextComponent} from "obsidian";
 import PDFAutoscrollerPlugin from "./main";
 
 export interface PDFAutoscrollerSettings {
@@ -26,14 +26,12 @@ export class PDFAutoscrollerSettingTab extends PluginSettingTab {
 
 		containerEl.empty();
 
-		let sliderComponent: SliderComponent;
 		let textComponent: TextComponent;
 
 		const updateComputedScrollSpeed = () => {
 			if (this.plugin.settings.useWpm) {
-				// roughly WPM / 60 since 60WPM is around 1 pixel tick
+				// roughly WPM / 60 
 				const computed = Math.max(1, Math.round(this.plugin.settings.wpm / 60));
-				if (sliderComponent) sliderComponent.setValue(computed);
 				if (textComponent) textComponent.setValue(computed.toString());
 			}
 		};
@@ -46,37 +44,17 @@ export class PDFAutoscrollerSettingTab extends PluginSettingTab {
 			.setName('Scroll Speed')
 			.setDesc(this.plugin.settings.useWpm 
 				? 'Locked to WPM equivalent speed.' 
-				: 'Manual scroll speed (1 - 100). Use slider or mouse wheel over the input.')
-			.addSlider(slider => {
-				sliderComponent = slider;
-				slider.setLimits(1, 100, 1);
-				slider.setValue(initComputedScrollSpeed);
-				slider.sliderEl.style.width = "250px";
-				
-				// Real-time update logic while dragging the thumb
-				slider.sliderEl.addEventListener('input', (evt) => {
-					const val = (evt.target as HTMLInputElement).value;
-					if (textComponent) textComponent.setValue(val);
-				});
-
-				slider.onChange(async (value) => {
-					this.plugin.settings.scrollSpeed = value;
-					if (textComponent) textComponent.setValue(value.toString());
-					await this.plugin.saveSettings();
-				})
-			})
+				: 'Manual scroll speed. Use your mouse wheel over the input to adjust.')
 			.addText(text => {
 				textComponent = text;
 				text.inputEl.type = "number";
 				text.inputEl.min = "1";
-				text.inputEl.max = "100";
-				text.inputEl.style.width = "60px";
+				text.inputEl.style.width = "80px";
 				text.setValue(initComputedScrollSpeed.toString())
 					.onChange(async (value) => {
 						const num = parseInt(value);
 						if (!isNaN(num)) {
 							this.plugin.settings.scrollSpeed = num;
-							if (sliderComponent) sliderComponent.setValue(num);
 							await this.plugin.saveSettings();
 						}
 					})
@@ -87,7 +65,7 @@ export class PDFAutoscrollerSettingTab extends PluginSettingTab {
 
 		new Setting(containerEl)
 			.setName('Use Words Per Minute (WPM)')
-			.setDesc('Override manual slider with a calculated reading speed')
+			.setDesc('Override manual text input with a calculated reading speed')
 			.addToggle(toggle => toggle
 				.setValue(this.plugin.settings.useWpm)
 				.onChange(async (value) => {
