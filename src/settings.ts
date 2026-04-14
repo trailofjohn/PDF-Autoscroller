@@ -49,8 +49,16 @@ export class PDFAutoscrollerSettingTab extends PluginSettingTab {
 				: 'Manual scroll speed (1 - 100). Use slider or mouse wheel over the input.')
 			.addSlider(slider => {
 				sliderComponent = slider;
-				slider.setLimits(1, 100, 1)
-				slider.setValue(initComputedScrollSpeed)
+				slider.setLimits(1, 100, 1);
+				slider.setValue(initComputedScrollSpeed);
+				slider.sliderEl.style.width = "250px";
+				
+				// Real-time update logic while dragging the thumb
+				slider.sliderEl.addEventListener('input', (evt) => {
+					const val = (evt.target as HTMLInputElement).value;
+					if (textComponent) textComponent.setValue(val);
+				});
+
 				slider.onChange(async (value) => {
 					this.plugin.settings.scrollSpeed = value;
 					if (textComponent) textComponent.setValue(value.toString());
