@@ -6,7 +6,7 @@ https://github.com/user-attachments/assets/demo.mp4 (Or view via `./demo/demo.mp
 
 ## Features
 
-- **Buttery Smooth Scrolling**: Engineered with `requestAnimationFrame` and fractional-pixel calculation, pushing standard interval-based scrolling aside to achieve visually perfect velocity.
+- **Smooth Scrolling**: Engineered with `requestAnimationFrame` and fractional-pixel calculation, pushing standard interval-based scrolling aside to achieve visually perfect velocity.
 - **Words Per Minute (WPM) Targeting**: Read optimally. Toggle the WPM mode to automatically calculate the required screen-velocity based on standardized mathematical conversions of your active PDF viewport!
 - **Granular Speed Dial**: Want full control? Dial your speed natively using your scroll wheel up to practically unlimited ceilings.
 
@@ -18,7 +18,7 @@ https://github.com/user-attachments/assets/demo.mp4 (Or view via `./demo/demo.mp
 **WPM Toggle ON** (Calculated Read Speed Mode)
 ![WPM On](./demo/WPM%20toggle%20on.png)
 
-## The "Scientifically Accurate" WPM Engine
+## The WPM Engine
 Rather than relying on abstract guessing or raw zoom-level hardcoding, setting your reading speed to `WPM` invokes a scientifically backed extraction:
 1. **Word Constraint Check**: Standard book-scale pages process around `250 words per page`. At `WPM`, completing one single page demands exactly `15000 / WPM` seconds.
 2. **True-Box Extraction**: The plugin dives into the active `pdf.js` bounding layers in Obsidian. It isolates the primary `.page` container and determines its exact pixel `clientHeight` based on your exact layout and zoom parameters. 
