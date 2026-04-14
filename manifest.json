@@ -1,10 +1,10 @@
 {
-	"id": "pdf-autoscroller",
-	"name": "PDF Autoscroller",
-	"version": "1.0.1",
-	"minAppVersion": "0.15.0",
-	"description": "Automatically scrolls PDF files smoothly like movie credits, with WPM reading analytics.",
-	"author": "trailofjohn",
-	"authorUrl": "https://github.com/trailofjohn",
-	"isDesktopOnly": false
+  "id": "pdf-autoscroller",
+  "name": "PDF Autoscroller",
+  "version": "1.0.2",
+  "minAppVersion": "0.15.0",
+  "description": "Automatically scrolls PDF files smoothly like movie credits, with WPM reading analytics.",
+  "author": "trailofjohn",
+  "authorUrl": "https://github.com/trailofjohn",
+  "isDesktopOnly": false
 }
