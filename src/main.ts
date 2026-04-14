@@ -67,8 +67,17 @@ export default class PDFAutoscrollerPlugin extends Plugin {
 
 		let pixelsPerSecond: number;
 		if (this.settings.useWpm) {
-			// Approximate: 4 pixels per word on a standard desktop view.
-			pixelsPerSecond = (this.settings.wpm / 60) * 4;
+			// Mathematical WPM Conversion:
+			// 1. A standard letter/book page typically contains ~250 words.
+			// 2. We dynamically find the exact pixel height of the first rendered PDF page.
+			// 3. Time per page = (250 / WPM) minutes = (15000 / WPM) seconds.
+			// 4. Pixels per second = Page Height / Time per page.
+			let pageHeight = 1000; // Fallback
+			const pageEls = this.activeScrollContainer.querySelectorAll('.page');
+			if (pageEls.length > 0) {
+				pageHeight = (pageEls[0] as HTMLElement).clientHeight || 1000;
+			}
+			pixelsPerSecond = (pageHeight * this.settings.wpm) / 15000;
 		} else {
 			// Map 1-100 setting to an appropriate smooth pixel range (4 to 400 pixels per sec)
 			pixelsPerSecond = this.settings.scrollSpeed * 4;

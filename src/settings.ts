@@ -26,7 +26,7 @@ export class PDFAutoscrollerSettingTab extends PluginSettingTab {
 
 		containerEl.empty();
 
-		new Setting(containerEl)
+		let scrollSetting = new Setting(containerEl)
 			.setName('Scroll Speed')
 			.setDesc('Manual scroll speed (1 - 100). Use your mouse wheel over the input to adjust.')
 			.addText(text => {
@@ -42,6 +42,9 @@ export class PDFAutoscrollerSettingTab extends PluginSettingTab {
 						}
 					})
 			});
+			
+		scrollSetting.settingEl.style.opacity = this.plugin.settings.useWpm ? "0.5" : "1";
+		scrollSetting.settingEl.style.pointerEvents = this.plugin.settings.useWpm ? "none" : "auto";
 
 		new Setting(containerEl)
 			.setName('Use Words Per Minute (WPM)')
