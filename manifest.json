@@ -1,0 +1,11 @@
+{
+	"id": "pdf-autoscroller",
+	"name": "PDF Autoscroller",
+	"version": "1.0.0",
+	"minAppVersion": "0.15.0",
+	"description": "Automatically scrolls PDF files like movie credits.",
+	"author": "trailofjohn",
+	"authorUrl": "https://obsidian.md",
+	"fundingUrl": "https://obsidian.md/pricing",
+	"isDesktopOnly": false
+}
