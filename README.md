@@ -1,6 +1,15 @@
 # PDF Autoscroller for Obsidian
 
-Automatically scroll your PDF files inside Obsidian at a smooth, customizable pace. Experience buttery-smooth reading right from your workspace!
+Human Text :
+
+This is vibe coded.
+efficiency is a dream here (probably)
+when I use it the pdf scrolls. I have no idea why or how.
+But it scrolls. Not bad for 20 mins and 3 prompts
+
+AI Text :
+
+Automatically scroll your PDF files inside Obsidian at a smooth, customizable pace. Experience smooth reading right from your workspace!
 
 https://github.com/user-attachments/assets/demo.mp4 (Or view via `./demo/demo.mp4` locally)
 
@@ -36,3 +45,4 @@ This allows the scrolling velocity to be mathematically locked to your precise r
 
 Pending Official Community Release.
 *(Currently, this can be manually installed by dropping the built files into a vault, or installed via Obsidian42 BRAT by pointing to this repository!)*
+
